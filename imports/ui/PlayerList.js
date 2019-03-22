@@ -10,8 +10,7 @@ export default class PlayerList extends Component {
           <p>Add your first player to get started!</p>
         </div>
       );
-    } else
-      return playerList.map((item, i) => <Player _id={item._id} key={i} />);
+    } else return playerList.map((item, i) => <Player player={item} key={i} />);
   };
   render() {
     let { players } = this.props;

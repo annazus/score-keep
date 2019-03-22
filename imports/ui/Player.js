@@ -3,35 +3,36 @@ import PropTypes from "prop-types";
 import { Players } from "../api/players";
 export default class Player extends Component {
   render() {
-    let { _id } = this.props;
-    let players = Players.find(_id).fetch();
-    if (players.length === 0) return <div>Player does not exist</div>;
-
-    let player = players[0];
+    let { player } = this.props;
+    let itemClassName = `item item__position-${player.rank}`;
     return (
-      <div key={_id} className="item">
+      <div className={itemClassName}>
         <div className="player">
           <div>
             <h3 className="player__name">{player.name}</h3>
-            <p className="player__stats">{player.score} points</p>
+            <p className="player__stats">
+              {player.position} place - {player.score} points
+            </p>
           </div>
 
           <div className="player__actions">
             <button
               className="button button__round"
-              onClick={() => Players.update(_id, { $inc: { score: 1 } })}
+              onClick={() => Players.update(player._id, { $inc: { score: 1 } })}
             >
               +1
             </button>
             <button
               className="button button__round"
-              onClick={() => Players.update(_id, { $inc: { score: -1 } })}
+              onClick={() =>
+                Players.update(player._id, { $inc: { score: -1 } })
+              }
             >
               -1
             </button>
             <button
               className="button button__round"
-              onClick={() => Players.remove(_id)}
+              onClick={() => Players.remove(player._id)}
             >
               X
             </button>
@@ -43,5 +44,5 @@ export default class Player extends Component {
 }
 
 Player.propTypes = {
-  _id: PropTypes.string.isRequired
+  player: PropTypes.object.isRequired
 };
