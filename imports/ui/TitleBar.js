@@ -8,9 +8,11 @@ export default class TitleBar extends Component {
   render() {
     let { title, author } = this.props;
     return (
-      <div>
-        <h1>{title}</h1>
-        <h3>Created by {author}</h3>
+      <div className="title-bar">
+        <div className="wrapper">
+          <h1>{title}</h1>
+          <h2 className="title-bar__subtitle">Created by {author}</h2>
+        </div>
       </div>
     );
   }

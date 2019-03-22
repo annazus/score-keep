@@ -4,18 +4,40 @@ import { Players } from "../api/players";
 export default class Player extends Component {
   render() {
     let { _id } = this.props;
-    let player = Players.find(_id).fetch()[0];
+    let players = Players.find(_id).fetch();
+    if (players.length === 0) return <div>Player does not exist</div>;
+
+    let player = players[0];
     return (
-      <p key={_id}>
-        {player.name} has {player.score} points
-        <button onClick={() => Players.update(_id, { $inc: { score: 1 } })}>
-          +1
-        </button>
-        <button onClick={() => Players.update(_id, { $inc: { score: -1 } })}>
-          -1
-        </button>
-        <button onClick={() => Players.remove(_id)}>X</button>
-      </p>
+      <div key={_id} className="item">
+        <div className="player">
+          <div>
+            <h3 className="player__name">{player.name}</h3>
+            <p className="player__stats">{player.score} points</p>
+          </div>
+
+          <div className="player__actions">
+            <button
+              className="button button__round"
+              onClick={() => Players.update(_id, { $inc: { score: 1 } })}
+            >
+              +1
+            </button>
+            <button
+              className="button button__round"
+              onClick={() => Players.update(_id, { $inc: { score: -1 } })}
+            >
+              -1
+            </button>
+            <button
+              className="button button__round"
+              onClick={() => Players.remove(_id)}
+            >
+              X
+            </button>
+          </div>
+        </div>
+      </div>
     );
   }
 }

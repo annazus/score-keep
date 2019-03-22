@@ -11,7 +11,8 @@
     "@babel/runtime": "^7.1.5",
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "react-flip-move": "^3.0.3"
   },
   "meteor": {
     "mainModule": {

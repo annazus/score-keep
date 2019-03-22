@@ -7,16 +7,26 @@ export default class AddPlayer extends Component {
   addPlayer = e => {
     e.preventDefault();
     const playerName = e.target.name.value.trim();
+    e.target.name.value = "";
     if (playerName) Players.insert({ name: playerName, score: 0 });
   };
 
   render() {
     let { title } = this.props;
     return (
-      <form onSubmit={this.addPlayer}>
-        <input type="text" name="name" id="name" placeholder="Name" />
-        <button>Add Player</button>
-      </form>
+      <div className="item">
+        {this.props.children}
+        <form onSubmit={this.addPlayer} className="form">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            className="form__input"
+          />
+          <button className="button">Add Player</button>
+        </form>
+      </div>
     );
   }
 }

@@ -8,8 +8,12 @@ export default class App extends Component {
     return (
       <div>
         <TitleBar title={this.props.title} author={this.props.author} />
-        <PlayerList players={this.props.players} />
-        <AddPlayer />
+        <div className="wrapper">
+          <PlayerList players={this.props.players} />
+          <AddPlayer>
+            <h1>Add Player</h1>
+          </AddPlayer>
+        </div>
       </div>
     );
   }
